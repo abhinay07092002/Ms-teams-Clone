@@ -9,6 +9,7 @@ button.addEventListener('click',()=>{
         chat: chat.value
     })
 });
+
 socket.on('ReceivingTheMessage',(data)=>{
     
     output.innerHTML += '<p>' + '<strong>'+data.sender+": "+'</strong>' +data.chat+ " "+'</p> ';

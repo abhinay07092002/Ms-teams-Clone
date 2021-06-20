@@ -1,10 +1,22 @@
 #packright{
-    position: Absolute; top: 495px; 
+    position: Absolute; top: 469px; 
 
     width:295px;
 
 }
-
 #keepRight{
     position:absolute; left:1065px;
+}
+#videokeep{
+    width: 1065px;
+}
+.container{
+    
+    position: Absolute; top: 469px; width: 1065px;
+}
+#call{
+    background-color: red;
+}
+#connect{
+    background-color: green
 }
