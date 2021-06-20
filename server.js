@@ -5,13 +5,13 @@ var io=require('socket.io')(server);
 app.set('view engine','ejs')
 app.use(express.static('public'));
 
-app.get('/',function(req,res){
+app.get('/',(req,res)=>{
 
     res.render('index');
 })
-io.on('connection',function(socket){
+io.on('connection',(socket)=>{
     
-    socket.on('deliveringTheMessage',function(data){
+    socket.on('deliveringTheMessage',(data)=>{
 
         io.sockets.emit('ReceivingTheMessage',data)
 

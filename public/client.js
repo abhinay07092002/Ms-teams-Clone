@@ -3,15 +3,15 @@ var sender=document.getElementById('sender');
 var chat=document.getElementById('message');
 var output=document.getElementById('keepRight');
 var button=document.getElementById('ok');
-button.addEventListener('click',function(){
+button.addEventListener('click',()=>{
     socket.emit('deliveringTheMessage',{
-        giver: sender.value,
-        given: chat.value
+        sender: sender.value,
+        chat: chat.value
     })
 });
-socket.on('ReceivingTheMessage',function(data){
+socket.on('ReceivingTheMessage',(data)=>{
     
-    output.innerHTML += '<p>' + '<strong>'+data.giver+" "+'</strong>' +data.given+ " "+'</p>';
+    output.innerHTML += '<p>' + '<strong>'+data.sender+": "+'</strong>' +data.chat+ " "+'</p> ';
 
 });
 
