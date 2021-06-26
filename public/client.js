@@ -1,19 +1,107 @@
-var socket=io();
-var sender=document.getElementById('sender');
-var chat=document.getElementById('message');
-var output=document.getElementById('keepRight');
-var button=document.getElementById('ok');
-button.addEventListener('click',()=>{
-    socket.emit('deliveringTheMessage',{
-        sender: sender.value,
-        chat: chat.value
+var socket = io(); 
+var message = document.getElementById('message');
+var button =  document.getElementById('send');
+var output = document.getElementById('receivedMessages');
+var conn;
+var peer_id=-1;
+var peer = new Peer();
+
+button.addEventListener('click', function(){
+    if(peer_id!=-1) output.innerHTML += '<p> <strong>' + "You :" +  '</strong>' + message.value + '</p>';
+
+    socket.emit('chat', {
+        message: message.value,
     })
-});
+}) 
+socket.on('chat', function(data){
+    if(peer_id!=-1) output.innerHTML += '<p> <strong>' + "Person 2" + ': </strong>' + data.message + '</p>';
+})
 
-socket.on('ReceivingTheMessage',(data)=>{
-    
-    output.innerHTML += '<p>' + '<strong>'+data.sender+": "+'</strong>' +data.chat+ " "+'</p> ';
+function getmymedia(callbacks){
+    navigator.getUserMedia=navigator.getUserMedia||navigator.webKitGetUserMedia||navigator.mozGetUserMedia;
 
-});
+    var constraints={
+        audio:true,
+        video:true
+    }
+
+    navigator.getUserMedia(constraints,callbacks.success)
+}
+
+function receiveStream(stream,elemid){
+
+    var video=document.getElementById(elemid);
+
+    video.srcObject=stream;
+
+    window.peer_stream=stream;
+
+}
+getmymedia({
+    success:function(stream){
+
+        window.localstream=stream;
+
+        receiveStream(stream,'myvideo');
+    },
+    error: function(err){
+
+         console.log("Error is " +err);
+
+    }
+})
+peer.on('open',function(){
+
+    alert("Your id is "+peer.id+" .Use it to get connected");
+
+})
+
+document.getElementById('connect').addEventListener('click',function(){
+
+    peer_id=document.getElementById('connid').value;
+
+    conn=peer.connect(peer_id);
+
+})
+
+document.getElementById('call').addEventListener('click',function(){
+
+    var call=peer.call(peer_id,window.localstream);
+
+    call.on('stream',function(stream){
+
+        window.peer_stream=stream;
+
+        receiveStream(stream,'hisvideo');
+    })
+
+    call.on('close',function(stream){
+
+        window.okToSend=false;
+
+    })
+})
 
 
+
+peer.on('connection',function(connection){
+
+    conn=connection;
+
+    peer_id=connection.peer;
+
+    document.getElementById('connid').value=peer_id;
+
+})
+
+peer.on('call',function(call){
+
+    call.answer(window.localstream);
+
+    call.on('stream',function(stream){
+
+        window.peer_stream=stream;
+
+        receiveStream(stream,'hisvideo')
+    })
+})

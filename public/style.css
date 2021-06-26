@@ -1,22 +1,52 @@
-#packright{
-    position: Absolute; top: 469px; 
-
-    width:295px;
-
+#myvideo{
+    position: float;
+    margin-top: 10px;
+    height: 540px;
+    width: 400px;
+    border: 3px solid rgb(255, 51, 0);
+    box-sizing: border-box;
 }
-#keepRight{
-    position:absolute; left:1065px;
-}
-#videokeep{
-    width: 1065px;
-}
-.container{
-    
-    position: Absolute; top: 469px; width: 1065px;
+#hisvideo{
+    position: float;
+    margin-top: 10px;
+    height: 540px;
+    width: 400px;
+    border: 3px solid rgb(12, 236, 12);
+    box-sizing: border-box;
 }
 #call{
-    background-color: red;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 200px;
 }
 #connect{
-    background-color: green
+    margin-left:20px;
+    margin-top: 10px;
+    width: 200px;
+}
+#send{
+    width:60px;
+    float: right;
+}
+#message{
+    width: 171px;
+    height:40px;
+}
+#connid{
+    width:527px;
+    margin-top: 10px;
+}
+#keepRight{
+   float:right;
+   width:260px;
+   bottom:0;
+   right:0;
+   background-color: gainsboro;
+
+}
+#cent{
+    padding-left: 400px;
+}
+.bcolor{
+    background-color: black;
 }

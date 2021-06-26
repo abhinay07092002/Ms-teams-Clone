@@ -1,20 +1,19 @@
-var express=require('express');
-var app=express();
-var server=require('http').Server(app);
-var io=require('socket.io')(server);
-app.set('view engine','ejs')
-app.use(express.static('public'));
+var express =require ('express')
+var app = express(); 
+var server = require('http').Server(app); 
+var io= require('socket.io')(server);
+app.use(express.static('public'))
+app.set('view engine','ejs');
 
-app.get('/',(req,res)=>{
-
+app.get('/', (req, res) => {
     res.render('index');
-})
-io.on('connection',(socket)=>{
-    
-    socket.on('deliveringTheMessage',(data)=>{
-
-        io.sockets.emit('ReceivingTheMessage',data)
-
-    });
 });
+
+io.on('connection', function(socket){
+    socket.on('chat', function(data){
+        socket.broadcast.emit('chat', data)
+    });
+
+});
+
 server.listen(3000);
