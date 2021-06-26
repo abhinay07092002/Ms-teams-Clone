@@ -18,7 +18,7 @@ socket.on('chat', function(data){
 })
 
 function getmymedia(callbacks){
-    navigator.mediaDevices.getUserMedia=navigator.getUserMedia||navigator.webKitGetUserMedia||navigator.mozGetUserMedia;
+    navigator.mediaDevices.getUserMedia=navigator.mediaDevices.getUserMedia||navigator.webKitGetUserMedia||navigator.mozGetUserMedia;
 
     var constraints={
         audio:true,
