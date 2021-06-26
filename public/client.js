@@ -18,14 +18,14 @@ socket.on('chat', function(data){
 })
 
 function getmymedia(callbacks){
-    navigator.getUserMedia=navigator.getUserMedia||navigator.webKitGetUserMedia||navigator.mozGetUserMedia;
+    navigator.mediaDevices.getUserMedia=navigator.getUserMedia||navigator.webKitGetUserMedia||navigator.mozGetUserMedia;
 
     var constraints={
         audio:true,
         video:true
     }
 
-    navigator.getUserMedia(constraints,callbacks.success)
+    navigator.mediaDevices.getUserMedia(constraints,callbacks.success)
 }
 
 function receiveStream(stream,elemid){
