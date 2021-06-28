@@ -18,13 +18,11 @@ socket.on('chat', function(data){
 })
 
 function getmymedia(callbacks){
-    navigator.mediaDevices.getUserMedia=navigator.mediaDevices.getUserMedia||navigator.webKitGetUserMedia||navigator.mozGetUserMedia;
 
     var constraints={
         audio:true,
         video:true
     }
-
     navigator.mediaDevices.getUserMedia(constraints,callbacks.success)
 }
 
