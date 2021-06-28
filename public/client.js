@@ -17,15 +17,23 @@ socket.on('chat', function(data){
     if(peer_id!=-1) output.innerHTML += '<p> <strong>' + "Person 2" + ': </strong>' + data.message + '</p>';
 })
 
-function getmymedia(callbacks){
-
-    var constraints={
-        audio:true,
-        video:true
-    }
-    navigator.mediaDevices.getUserMedia(constraints,callbacks.success)
+var constraints={
+    audio:true,
+    video:true
 }
+navigator.mediaDevices.getUserMedia(constraints)
+.then(function(stream) {
+  
+    window.localstream=stream;
 
+    receiveStream(stream,'myvideo');
+
+})
+.catch(function(err) {
+
+     console.log(err);
+     
+});
 function receiveStream(stream,elemid){
 
     var video=document.getElementById(elemid);
@@ -35,19 +43,6 @@ function receiveStream(stream,elemid){
     window.peer_stream=stream;
 
 }
-getmymedia({
-    success:function(stream){
-
-        window.localstream=stream;
-
-        receiveStream(stream,'myvideo');
-    },
-    error: function(err){
-
-         console.log("Error is " +err);
-
-    }
-})
 peer.on('open',function(){
 
     alert("Your id is "+peer.id+" .Use it to get connected");
