@@ -2,13 +2,14 @@ var socket = io();
 var message = document.getElementById('message');
 var button =  document.getElementById('send');
 var output = document.getElementById('receivedMessages');
+var videoOnOff=document.getElementById('videoOnOff');
 var conn;
 var peer_id=-1;
 var peer = new Peer();
 
 button.addEventListener('click', function(){
     if(peer_id!=-1) output.innerHTML += '<p> <strong>' + "You :" +  '</strong>' + message.value + '</p>';
-
+     
     socket.emit('chat', {
         message: message.value,
     })
@@ -21,9 +22,12 @@ var constraints={
     audio:true,
     video:true
 }
+let myVideoStream
 navigator.mediaDevices.getUserMedia(constraints)
 .then(function(stream) {
-  
+
+    myVideoStream=stream;
+
     window.localstream=stream;
 
     receiveStream(stream,'myvideo');
@@ -97,4 +101,42 @@ peer.on('call',function(call){
 
         receiveStream(stream,'hisvideo')
     })
+})
+
+videoOnOff.addEventListener('click',function(){
+
+    let videoEnabled = myVideoStream.getVideoTracks()[0].enabled;
+    if (videoEnabled) 
+    {
+       videoOnOff.innerHTML='<img src="vidoff.jpg" width="40px" height="40px">';
+
+       myVideoStream.getVideoTracks()[0].enabled = false;
+
+    } 
+    else
+    {
+      videoOnOff.innerHTML='<img src="vid.png" width="40px" height="40px">';
+
+      myVideoStream.getVideoTracks()[0].enabled = true;
+
+    }
+})
+
+audioOnOff.addEventListener('click',function(){
+
+    let audioEnabled = myVideoStream.getAudioTracks()[0].enabled;
+
+    if (audioEnabled)
+    {
+      audioOnOff.innerHTML='<img src="audoff.jpg" width="40px" height="40px">';
+
+      myVideoStream.getAudioTracks()[0].enabled = false;
+ 
+    } 
+    else 
+    {
+     audioOnOff.innerHTML='<img src="aud.jpg" width="40px" height="40px">';
+
+      myVideoStream.getAudioTracks()[0].enabled = true;
+    }
 })

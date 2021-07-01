@@ -17,12 +17,12 @@
 #call{
     margin-left: 20px;
     margin-top: 10px;
-    width: 200px;
+    width: 150px;
 }
 #connect{
     margin-left:20px;
     margin-top: 10px;
-    width: 200px;
+    width: 150px;
 }
 #send{
     width:60px;
@@ -33,7 +33,7 @@
     height:40px;
 }
 #connid{
-    width:527px;
+    width:327px;
     margin-top: 10px;
 }
 #keepRight{
@@ -49,4 +49,16 @@
 }
 .bcolor{
     background-color: black;
+}
+#audioOnOff{
+    margin-left:20px;
+    margin-top: 10px;
+    margin-right: 20px;
+    width: 120px;
+}
+
+#videoOnOff{
+    margin-left:20px;
+    margin-top: 10px;
+    width: 120px;
 }
