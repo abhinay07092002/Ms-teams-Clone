@@ -17,12 +17,12 @@
 #call{
     margin-left: 20px;
     margin-top: 10px;
-    width: 150px;
+    width: 120px;
 }
 #connect{
     margin-left:20px;
     margin-top: 10px;
-    width: 150px;
+    width: 120px;
 }
 #send{
     width:60px;
@@ -33,7 +33,7 @@
     height:40px;
 }
 #connid{
-    width:327px;
+    width:220px;
     margin-top: 10px;
 }
 #keepRight{
@@ -61,4 +61,10 @@
     margin-left:20px;
     margin-top: 10px;
     width: 120px;
+}
+
+#screenShare{
+    margin-right:20px;
+    margin-top: 10px;
+    width: 150px;
 }

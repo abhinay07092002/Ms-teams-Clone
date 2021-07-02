@@ -38,6 +38,54 @@ navigator.mediaDevices.getUserMedia(constraints)
      console.log(err);
      
 });
+
+var displayMediaOptions = {
+    video: {
+        cursor: "always"
+    },
+    audio: false
+};
+
+document.getElementById('screenShare').addEventListener('click',function(){
+    navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
+
+    .then(function (stream) {
+    
+      window.localstream=stream;
+
+      receiveStream(stream,'myvideo');
+
+      var call=peer.call(peer_id,window.localstream);
+
+      call.on('stream',function(stream){
+
+         window.peer_stream=stream;
+
+         receiveStream(stream,'hisvideo');
+      })
+
+      stream.getVideoTracks()[0].onended=function()
+      {
+
+        stream=myVideoStream;
+            
+        window.localstream=stream;
+
+        receiveStream(stream,'myvideo');
+
+        call=peer.call(peer_id,window.localstream);
+
+        call.on('stream',function(stream){
+
+           window.peer_stream=stream;
+
+           receiveStream(stream,'hisvideo');
+        })
+
+          
+      }
+})
+});
 function receiveStream(stream,elemid){
 
     var video=document.getElementById(elemid);
@@ -101,6 +149,7 @@ peer.on('call',function(call){
 
         receiveStream(stream,'hisvideo')
     })
+
 })
 
 videoOnOff.addEventListener('click',function(){
