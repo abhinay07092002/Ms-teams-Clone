@@ -2,7 +2,7 @@
     position: float;
     margin-top: 10px;
     height: 540px;
-    width: 400px;
+    width: 510px;
     border: 3px solid rgb(255, 51, 0);
     box-sizing: border-box;
 }
@@ -10,19 +10,19 @@
     position: float;
     margin-top: 10px;
     height: 540px;
-    width: 400px;
+    width: 510px;
     border: 3px solid rgb(12, 236, 12);
     box-sizing: border-box;
 }
 #call{
     margin-left: 20px;
     margin-top: 10px;
-    width: 120px;
+    width: 150px;
 }
 #connect{
     margin-left:20px;
     margin-top: 10px;
-    width: 120px;
+    width: 150px;
 }
 #send{
     width:60px;
@@ -33,7 +33,7 @@
     height:40px;
 }
 #connid{
-    width:220px;
+    width:270px;
     margin-top: 10px;
 }
 #keepRight{
@@ -41,7 +41,7 @@
    width:260px;
    bottom:0;
    right:0;
-   background-color: gainsboro;
+   background-color: rgb(168, 158, 158);
 
 }
 #cent{
@@ -67,4 +67,7 @@
     margin-right:20px;
     margin-top: 10px;
     width: 150px;
+}
+#downSend{
+    margin-top: 580px;
 }

@@ -1,39 +1,94 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MICROSOFT TEAMS</title>
+
+    <title>
+      MICROSOFT TEAMS
+    </title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- linking to cdn -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+
+    <!-- linking to our style page -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- linking to bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- linking to socket.io -->
+    <script src="/socket.io/socket.io.js"></script> 
+
 </head>
 
-<body class='bcolor'>
+<!-- our body -->
+<body class='bcolor'> 
+  
+    <!-- this div will help keeping our message box in right -->
     <div class="container" id="keepRight">
-            <div id="receivedMessages"></div>
+
+            <!-- this div will have our messages -->
+            <div id="receivedMessages">
+               
+            </div>
+
+        <div id="downSend">
+
+        <!-- our message div -->
         <input id="message" type="text" placeholder="Say Hello" />
-        <button id="send" class=" btn btn-md btn-primary" >Send</button>  
+
+        <!-- our sending message button -->
+        <button id="send" class=" btn btn-md btn-primary" >Send</button>
+
+        </div>
+
     </div>
     <div class="row">
-      <div class="col-sm-6 col-md-6 col-lg-6" >
-        <video id="myvideo" autoplay="autoplay"></video>
-      </div>
-      <div class="col-sm-6 col-md-6 col-lg-6">
-        <video id="hisvideo" autoplay="autoplay"></video>
-      </div>
-    <button id="videoOnOff" class="btn btn-light"><img src="vid.png" width="40px" height="40px"></button>
-    <button id="audioOnOff" class="btn btn-light"><img src="aud.jpg" width="40px" height="40px"></button>
-    <button id="screenShare" class="btn btn-info">Share screen</button>
-    <input type="text" class="form-control" id="connid" placeholder="Tell connection id">
-    <button id="call" class=" btn btn-lg btn-danger" >Call</button>
-    <button id="connect" class="btn btn-lg btn-success" >Connect</button>
+
+        <!-- the person who is calling his video will be here -->
+        <div class="col-sm-6 col-md-6 col-lg-6" >
+           <video id="myvideo" autoplay="autoplay">
+
+           </video>
+        </div>
+
+        <!-- the person on the call from otherside ,his video will be here -->
+        <div class="col-sm-6 col-md-6 col-lg-6">
+           <video id="hisvideo" autoplay="autoplay">
+
+           </video>
+        </div>
+
+        <!-- video on/off -->
+        <button id="videoOnOff" class="btn btn-light"><img src="vid.jpg" width="40px" height="40px"></button>
+
+        <!-- audio on/off -->
+        <button id="audioOnOff" class="btn btn-light"><img src="aud.jpg" width="40px" height="40px"></button>
+
+        <!-- sharing screen-->
+        <button id="screenShare" class="btn btn-info">Share screen</button>
+
+        <!-- connection id of the peer to be connected will be filled here -->
+        <input type="text" class="form-control" id="connid" placeholder="Tell connection id">
+
+        <!-- call button -->
+        <button id="call" class=" btn btn-lg btn-danger" >Call</button>
+
+        <!-- connection button -->
+        <button id="connect" class="btn btn-lg btn-success" >Connect</button>
     
     </div>
-      <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-      <script src="client.js"></script>
+
+    <!-- peerjs taken in index.ejs page -->
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+
+    <!-- client side javascript -->
+    <script src="client.js"></script>
   </body>
-  </html>
+</html>
