@@ -23,7 +23,10 @@ io.on('connection', function(socket){
     socket.on('chat', function(data){
         socket.broadcast.emit('chat', data);
     });
-
+    
+    socket.on('temp',function(){
+        socket.broadcast.emit('temp');
+    })
 });
 
 //listening to initialized port number

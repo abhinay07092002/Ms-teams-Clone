@@ -16,16 +16,24 @@ var peer = new Peer();//dynamic initialization of peer
 
 //when send button is pressed this below segment of code gets activated and perform sending of message to server side from client side 
 button.addEventListener('click', function(){
-    if(peer_id!=-1) output.innerHTML += '<p> <strong>' + "You :" +  '</strong>' + message.value + '</p>';
-     
+    if(peer_id!=-1&&message.value!="") output.innerHTML += '<p> <strong>' + "You :" +  '</strong>' + message.value + '</p>';
     socket.emit('chat', {
         message: message.value,
     })
+    message.value="";
 }) 
 
 //when receiving a message from server side ,perform the followong action
 socket.on('chat', function(data){
-    if(peer_id!=-1) output.innerHTML += '<p> <strong>' + "Person 2" + ': </strong>' + data.message + '</p>';
+    if(peer_id!=-1&&data.message!="") output.innerHTML += '<p> <strong>' + "Person 2" + ': </strong>' + data.message + '</p>';
+})
+
+document.getElementById('leave').addEventListener('click',function(){   
+    socket.emit('temp');
+    window.location.reload();  
+})
+socket.on('temp',function(){
+    window.location.reload();  
 })
 
 //Taking our video and audio permissions 
@@ -58,8 +66,7 @@ navigator.mediaDevices.getUserMedia(constraints)
 var displayMediaOptions = {
     video: {
         cursor: "always"
-    },
-    audio: false
+    }
 };
 
 //displaying our screen and so on and so forth
@@ -98,8 +105,6 @@ document.getElementById('screenShare').addEventListener('click',function(){
 
            receiveStream(stream,'hisvideo');
         })
-
-          
       }
 })
 });
@@ -118,22 +123,18 @@ function receiveStream(stream,elemid){
 //whenever a client reaches to the application just give him a random id so that he can get connected
 peer.on('open',function(){
 
-    alert("Your id is "+peer.id+" .Use it to get connected");
-
-})
-
-//when pressed on connect button ,now you can chat to the peer but still can't see the video and can't show your screen
-//to him/her
-document.getElementById('connect').addEventListener('click',function(){
-
-    peer_id=document.getElementById('connid').value;
-
-    conn=peer.connect(peer_id);
+    alert("Your id is "+peer.id+" Use it to get connected");
 
 })
 
 //once a call is made one can video-chat/screen share/messages etc
 document.getElementById('call').addEventListener('click',function(){
+
+    peer_id=document.getElementById('connid').value;
+
+    document.getElementById('leave').disabled=false;
+
+    conn=peer.connect(peer_id);
 
     var call=peer.call(peer_id,window.localstream);
 
@@ -147,7 +148,8 @@ document.getElementById('call').addEventListener('click',function(){
     call.on('close',function(stream){
 
         window.okToSend=false;
-
+        
+        video.remove();
     })
 })
 
@@ -183,17 +185,17 @@ videoOnOff.addEventListener('click',function(){
     let videoEnabled = myVideoStream.getVideoTracks()[0].enabled;
     if (videoEnabled) 
     {
-       videoOnOff.innerHTML='<img src="vidoff.png" width="40px" height="40px">';
+       videoOnOff.innerHTML='<img src="vidoff.png" width="35px" height="35px">';
 
-       myVideoStream.getVideoTracks()[0].enabled = false;
+       myVideoStream.getVideoTracks()[0].enabled=false;
 
     } 
     else
     {
-      videoOnOff.innerHTML='<img src="vid.jpg" width="40px" height="40px">';
+      videoOnOff.innerHTML='<img src="vid.jpg" width="35px" height="35px">';
 
-      myVideoStream.getVideoTracks()[0].enabled = true;
-
+      myVideoStream.getVideoTracks()[0].enabled=true;
+      
     }
 })
 
@@ -204,15 +206,18 @@ audioOnOff.addEventListener('click',function(){
 
     if (audioEnabled)
     {
-      audioOnOff.innerHTML='<img src="audoff.jpg" width="40px" height="40px">';
+      audioOnOff.innerHTML='<img src="audoff.jpg" width="35px" height="35px">';
 
       myVideoStream.getAudioTracks()[0].enabled = false;
- 
+    
     } 
     else 
     {
-     audioOnOff.innerHTML='<img src="aud.jpg" width="40px" height="40px">';
+     audioOnOff.innerHTML='<img src="aud.jpg" width="35px" height="35px">';
 
       myVideoStream.getAudioTracks()[0].enabled = true;
+
     }
 })
+
+

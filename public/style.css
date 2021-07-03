@@ -1,44 +1,46 @@
 #myvideo{
     position: float;
-    margin-top: 10px;
-    height: 540px;
-    width: 510px;
+    margin-top: 4vh;
+    height: 85vh;
+    width: 38vw;
     border: 3px solid rgb(255, 51, 0);
     box-sizing: border-box;
 }
 #hisvideo{
     position: float;
-    margin-top: 10px;
-    height: 540px;
-    width: 510px;
+    margin-top: 4vh;
+    height: 85vh;
+    width: 38vw;
     border: 3px solid rgb(12, 236, 12);
     box-sizing: border-box;
 }
 #call{
     margin-left: 20px;
     margin-top: 10px;
-    width: 150px;
+    width: 7vw;
 }
-#connect{
-    margin-left:20px;
+
+#leave{
+    margin-left: 20px;
     margin-top: 10px;
-    width: 150px;
+    width: 8vw;
 }
 #send{
-    width:60px;
+    width:5vw;
+    height: 7vh;
     float: right;
 }
 #message{
-    width: 171px;
-    height:40px;
+    width: 13vw;
+    height:7vh;
 }
 #connid{
-    width:270px;
+    width:30vw;
     margin-top: 10px;
 }
 #keepRight{
    float:right;
-   width:260px;
+   width:20vw;
    bottom:0;
    right:0;
    background-color: rgb(168, 158, 158);
@@ -54,20 +56,25 @@
     margin-left:20px;
     margin-top: 10px;
     margin-right: 20px;
-    width: 120px;
+    width: 8vw;
 }
 
 #videoOnOff{
     margin-left:20px;
     margin-top: 10px;
-    width: 120px;
+    width: 8vw;
 }
 
 #screenShare{
     margin-right:20px;
     margin-top: 10px;
-    width: 150px;
+    width: 8vw;
 }
 #downSend{
-    margin-top: 580px;
+    margin-top: 92.8vh;
+}
+
+#receivedMessages{
+
+    position:sticky;
 }
