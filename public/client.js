@@ -170,6 +170,8 @@ peer.on('call',function(call){
 
     call.answer(window.localstream);
 
+    document.getElementById('leave').disabled=false;
+
     call.on('stream',function(stream){
 
         window.peer_stream=stream;
