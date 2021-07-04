@@ -2,28 +2,32 @@
     position: float;
     margin-top: 4vh;
     height: 85vh;
-    width: 38vw;
-    border: 3px solid rgb(255, 51, 0);
+    width: 24vw;
+    border: 0.5vw solid rgb(206, 166, 157);
     box-sizing: border-box;
 }
 #hisvideo{
     position: float;
     margin-top: 4vh;
     height: 85vh;
-    width: 38vw;
-    border: 3px solid rgb(12, 236, 12);
+    width: 24vw;
+    border: 0.5vw solid rgb(12, 236, 12);
     box-sizing: border-box;
 }
 #call{
-    margin-left: 20px;
-    margin-top: 10px;
+    margin-left: 1vw;
+    margin-top: 1vh;
     width: 7vw;
 }
-
 #leave{
-    margin-left: 20px;
-    margin-top: 10px;
-    width: 8vw;
+    margin-left: 1vw;
+    margin-top: 1vh;
+    width: 7vw;
+}
+#lin{
+    margin-left: 1vw;
+    margin-top: 1vh;
+    width: 7vw;
 }
 #send{
     width:5vw;
@@ -35,15 +39,15 @@
     height:7vh;
 }
 #connid{
-    width:30vw;
-    margin-top: 10px;
+    width:33.4vw;
+    margin-top: 1vh;
 }
 #keepRight{
    float:right;
    width:20vw;
    bottom:0;
    right:0;
-   background-color: rgb(168, 158, 158);
+   background-color: rgb(19, 32, 53);
 
 }
 #cent{
@@ -53,21 +57,21 @@
     background-color: black;
 }
 #audioOnOff{
-    margin-left:20px;
-    margin-top: 10px;
-    margin-right: 20px;
+    margin-left:1vw;
+    margin-top: 1vh;
+    margin-right: 2vw;
     width: 8vw;
 }
 
 #videoOnOff{
-    margin-left:20px;
-    margin-top: 10px;
+    margin-left:1vw;
+    margin-top: 1vh;
     width: 8vw;
 }
 
 #screenShare{
-    margin-right:20px;
-    margin-top: 10px;
+    margin-right:1vw;
+    margin-top: 1vh;
     width: 8vw;
 }
 #downSend{
@@ -77,4 +81,9 @@
 #receivedMessages{
 
     position:sticky;
+}
+#canvas{
+    border:0.5vw solid blue;
+    margin-top: 4vh;
+    background-color: white;
 }

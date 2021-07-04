@@ -52,18 +52,20 @@
     <div class="row">
 
         <!-- the person who is calling his video will be here -->
-        <div class="col-sm-6 col-md-6 col-lg-6" >
+        <div class="col-sm-4 col-md-4 col-lg-4" >
            <video id="myvideo" autoplay="autoplay" muted="muted">
 
            </video>
         </div>
 
         <!-- the person on the call from otherside ,his video will be here -->
-        <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="col-sm-4 col-md-4 col-lg-4">
            <video id="hisvideo" autoplay="autoplay">
 
            </video>
         </div>
+
+        <canvas id="canvas" class="col-sm-4 col-md-4 col-lg-4"></canvas>
 
         <!-- video on/off -->
         <button id="videoOnOff" class="btn btn-light"><img src="vid.jpg" width="35px" height="35px"></button>
@@ -75,13 +77,13 @@
         <button id="screenShare" class="btn btn-info">Share screen</button>
 
         <!-- connection id of the peer to be connected will be filled here -->
-        <input type="text" class="form-control" id="connid" placeholder="Tell connection id">
+        <input type="text" class="form-control" id="connid" placeholder="Tell connection id of your peer">
 
         <!-- call button -->
-        <button id="call" class=" btn btn-lg btn-light" ><img src="call.jpg" width="35px" height="35px"></button>
+        <button id="call" class=" btn btn-lg btn-success" >call</button>
         
-        <!-- cut the call -->
-        <button id="leave" class="btn btn-lg btn-light" disabled><img src="cut.jpg" width="35px" height="35px"></button>
+        <!-- cut button -->
+        <button id="leave" class=" btn btn-lg btn-danger" >cut</button>
     
     </div>
     

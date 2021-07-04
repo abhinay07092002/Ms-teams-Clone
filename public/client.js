@@ -16,7 +16,7 @@ var peer = new Peer();//dynamic initialization of peer
 
 //when send button is pressed this below segment of code gets activated and perform sending of message to server side from client side 
 button.addEventListener('click', function(){
-    if(peer_id!=-1&&message.value!="") output.innerHTML += '<p> <strong>' + "You :" +  '</strong>' + message.value + '</p>';
+    if(peer_id!=-1&&message.value!="") output.innerHTML += '<p style="color:white"> <strong>' + "You :" +  '</strong>' + message.value + '</p>';
     socket.emit('chat', {
         message: message.value,
     })
@@ -25,12 +25,14 @@ button.addEventListener('click', function(){
 
 //when receiving a message from server side ,perform the followong action
 socket.on('chat', function(data){
-    if(peer_id!=-1&&data.message!="") output.innerHTML += '<p> <strong>' + "Person 2" + ': </strong>' + data.message + '</p>';
+    if(peer_id!=-1&&data.message!="") output.innerHTML += '<p style="color:white"> <strong>' + "Person 2" + ': </strong>' + data.message + '</p>';
 })
 
-document.getElementById('leave').addEventListener('click',function(){   
+document.getElementById('leave').addEventListener('click',function(){ 
+    if(peer_id!=-1){  
     socket.emit('temp');
     window.location.reload();  
+    }
 })
 socket.on('temp',function(){
     window.location.reload();  
@@ -151,6 +153,7 @@ document.getElementById('call').addEventListener('click',function(){
         
         video.remove();
     })
+
 })
 
 
@@ -222,4 +225,52 @@ audioOnOff.addEventListener('click',function(){
     }
 })
 
+
+let canvas=document.getElementById('canvas');
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+let pointer=canvas.getContext("2d");
+
+let x,y;
+let mouseDown=false;
+
+window.onmouseup=function(e){
+    mouseDown=false;
+}
+
+window.onmousedown=function(e){
+   
+     pointer.moveTo(x, y);
+     mouseDown=true;
+     if(peer_id!=-1){
+     socket.emit('avoidDiscrepancy',{x,y});
+     }
+}
+
+socket.on('avoidDiscrepancy',function(data){
+    pointer.moveTo(data.x, data.y);
+})
+
+window.onmousemove=function(event){
+   x=event.clientX;
+   y=event.clientY;
+
+   if(mouseDown){
+    if(peer_id!=-1){ 
+        socket.emit('draw',{x,y});
+    }
+       pointer.lineTo(x, y);
+       pointer.stroke();
+   }
+}
+
+socket.on('draw',function(data){
+    if(peer_id!=-1){
+    pointer.lineTo(data.x, data.y);
+    pointer.stroke();
+    }
+})
 

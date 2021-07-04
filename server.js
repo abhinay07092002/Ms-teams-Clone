@@ -19,6 +19,7 @@ app.get('/', function(req, res){
 
 
 //Server getting a message from client side and emitting it in such a way that it reaches to all except the sender
+
 io.on('connection', function(socket){
     socket.on('chat', function(data){
         socket.broadcast.emit('chat', data);
@@ -26,6 +27,14 @@ io.on('connection', function(socket){
     
     socket.on('temp',function(){
         socket.broadcast.emit('temp');
+    })
+
+    socket.on('draw',function(data){
+        socket.broadcast.emit('draw',data);
+    })
+
+    socket.on('avoidDiscrepancy',function(data){
+        socket.broadcast.emit('avoidDiscrepancy',data);
     })
 });
 
