@@ -1,16 +1,14 @@
 #myvideo{
     position: float;
-    margin-top: 4vh;
     height: 85vh;
-    width: 24vw;
-    border: 0.5vw solid rgb(206, 166, 157);
+    width: 38vw;
+    border: 0.5vw solid rgb(241, 54, 12);
     box-sizing: border-box;
 }
 #hisvideo{
     position: float;
-    margin-top: 4vh;
     height: 85vh;
-    width: 24vw;
+    width: 38vw;
     border: 0.5vw solid rgb(12, 236, 12);
     box-sizing: border-box;
 }
@@ -37,6 +35,7 @@
 #message{
     width: 13vw;
     height:7vh;
+    border:0.3vw solid blue;
 }
 #connid{
     width:33.4vw;
@@ -83,7 +82,6 @@
     position:sticky;
 }
 #canvas{
-    border:0.5vw solid blue;
-    margin-top: 4vh;
+    border:0.5vw solid violet;
     background-color: white;
 }

@@ -44,7 +44,7 @@
         <input id="message" type="text" placeholder="Say Hello" />
 
         <!-- our sending message button -->
-        <button id="send" class=" btn btn-md btn-primary" >Send</button>
+        <button id="send" class=" btn btn-md btn-light" ><img src="send.jpg" width="35px" height="35px"></button>
 
         </div>
 
@@ -52,20 +52,18 @@
     <div class="row">
 
         <!-- the person who is calling his video will be here -->
-        <div class="col-sm-4 col-md-4 col-lg-4" >
+        <div class="col-sm-6 col-md-6 col-lg-6" >
            <video id="myvideo" autoplay="autoplay" muted="muted">
 
            </video>
         </div>
 
         <!-- the person on the call from otherside ,his video will be here -->
-        <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="col-sm-6 col-md-6 col-lg-6">
            <video id="hisvideo" autoplay="autoplay">
 
            </video>
         </div>
-
-        <canvas id="canvas" class="col-sm-4 col-md-4 col-lg-4"></canvas>
 
         <!-- video on/off -->
         <button id="videoOnOff" class="btn btn-light"><img src="vid.jpg" width="35px" height="35px"></button>
@@ -80,12 +78,14 @@
         <input type="text" class="form-control" id="connid" placeholder="Tell connection id of your peer">
 
         <!-- call button -->
-        <button id="call" class=" btn btn-lg btn-success" >call</button>
+        <button id="call" class=" btn btn-lg btn-success" ><img src="call.png" width="35px" height="35px"></button>
         
         <!-- cut button -->
-        <button id="leave" class=" btn btn-lg btn-danger" >cut</button>
+        <button id="leave" class=" btn btn-lg btn-danger" disabled><img src="cut.png" width="35px" height="35px"></button>
     
     </div>
+
+    <canvas id="canvas"></canvas>
     
     <!-- peerjs taken in index.ejs page -->
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>

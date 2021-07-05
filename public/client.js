@@ -134,6 +134,8 @@ document.getElementById('call').addEventListener('click',function(){
 
     peer_id=document.getElementById('connid').value;
 
+    if(peer_id!=""){
+
     document.getElementById('leave').disabled=false;
 
     conn=peer.connect(peer_id);
@@ -153,6 +155,7 @@ document.getElementById('call').addEventListener('click',function(){
         
         video.remove();
     })
+    }
 
 })
 
@@ -228,9 +231,11 @@ audioOnOff.addEventListener('click',function(){
 
 let canvas=document.getElementById('canvas');
 
-canvas.width=window.innerWidth;
+canvas.width=1366;
 
-canvas.height=window.innerHeight;
+canvas.height=625;
+
+console.log(canvas.width+" "+canvas.height);
 
 let pointer=canvas.getContext("2d");
 
