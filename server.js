@@ -14,6 +14,7 @@ app.set('view engine','ejs'); //Look for ejs files when asked to render a file a
 
 //hitting on / route our application calls various functionalities of this application
 app.get('/', function(req, res){
+
     res.render('index');
 });
 
@@ -21,19 +22,32 @@ app.get('/', function(req, res){
 //Server getting a message from client side and emitting it in such a way that it reaches to all except the sender
 
 io.on('connection', function(socket){
+    
+    // call for sending chat to all client except sender
+
     socket.on('chat', function(data){
+
         socket.broadcast.emit('chat', data);
     });
     
+    // one another such call for handling chat functionality
+    
     socket.on('temp',function(){
+
         socket.broadcast.emit('temp');
     })
+    
+    // call for drawing on other clients from the sending client
 
     socket.on('draw',function(data){
+
         socket.broadcast.emit('draw',data);
     })
+    
+    // call from client to server to update mouse pointer
 
     socket.on('avoidDiscrepancy',function(data){
+
         socket.broadcast.emit('avoidDiscrepancy',data);
     })
 });

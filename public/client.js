@@ -17,30 +17,42 @@ var peer = new Peer();//dynamic initialization of peer
 //when send button is pressed this below segment of code gets activated and perform sending of message to server side from client side 
 button.addEventListener('click', function(){
     if(peer_id!=-1&&message.value!="") output.innerHTML += '<p style="color:white"> <strong>' + "You :" +  '</strong>' + message.value + '</p>';
+    
     socket.emit('chat', {
+
         message: message.value,
     })
+
     message.value="";
 }) 
 
 //when receiving a message from server side ,perform the followong action
 socket.on('chat', function(data){
-    if(peer_id!=-1&&data.message!="") output.innerHTML += '<p style="color:white"> <strong>' + "Person 2" + ': </strong>' + data.message + '</p>';
+
+    if(peer_id!=-1&&data.message!="") {
+
+        output.innerHTML += '<p style="color:white"> <strong>' + "Person 2" + ': </strong>' + data.message + '</p>';
+    }
 })
 
 document.getElementById('leave').addEventListener('click',function(){ 
     if(peer_id!=-1){  
-    socket.emit('temp');
-    window.location.reload();  
+
+       socket.emit('temp');
+
+       window.location.reload();  
     }
 })
 socket.on('temp',function(){
+
     window.location.reload();  
 })
 
 //Taking our video and audio permissions 
 var constraints={
+
     audio:true,
+
     video:true
 }
 
@@ -68,7 +80,8 @@ navigator.mediaDevices.getUserMedia(constraints)
 var displayMediaOptions = {
     video: {
         cursor: "always"
-    }
+    },
+    audio:true
 };
 
 //displaying our screen and so on and so forth
@@ -191,15 +204,13 @@ peer.on('call',function(call){
 videoOnOff.addEventListener('click',function(){
 
     let videoEnabled = myVideoStream.getVideoTracks()[0].enabled;
-    if (videoEnabled) 
-    {
+    if (videoEnabled) {
        videoOnOff.innerHTML='<img src="vidoff.png" width="35px" height="35px">';
 
        myVideoStream.getVideoTracks()[0].enabled=false;
 
     } 
-    else
-    {
+    else{
       videoOnOff.innerHTML='<img src="vid.jpg" width="35px" height="35px">';
 
       myVideoStream.getVideoTracks()[0].enabled=true;
@@ -212,15 +223,13 @@ audioOnOff.addEventListener('click',function(){
 
     let audioEnabled = myVideoStream.getAudioTracks()[0].enabled;
 
-    if (audioEnabled)
-    {
+    if (audioEnabled){
       audioOnOff.innerHTML='<img src="audoff.jpg" width="35px" height="35px">';
 
       myVideoStream.getAudioTracks()[0].enabled = false;
     
     } 
-    else 
-    {
+    else {
      audioOnOff.innerHTML='<img src="aud.jpg" width="35px" height="35px">';
 
       myVideoStream.getAudioTracks()[0].enabled = true;
@@ -228,54 +237,77 @@ audioOnOff.addEventListener('click',function(){
     }
 })
 
-
+// canvas element
 let canvas=document.getElementById('canvas');
 
+//width as of windows size
 canvas.width=1366;
 
 canvas.height=625;
 
-console.log(canvas.width+" "+canvas.height);
-
+//basically a kind of pointer to draw the lines
 let pointer=canvas.getContext("2d");
 
 let x,y;
+
 let mouseDown=false;
 
+//handling situation when mouse lifted up and person don't want to wo=rite anything
 window.onmouseup=function(e){
+
     mouseDown=false;
 }
 
+//for writing or drawing through mouse 
 window.onmousedown=function(e){
    
      pointer.moveTo(x, y);
+
      mouseDown=true;
+
      if(peer_id!=-1){
-     socket.emit('avoidDiscrepancy',{x,y});
+
+        socket.emit('avoidDiscrepancy',{x,y});
      }
 }
 
+//some discrepency on receiver side regarding when the sender writes something then pointerof mouse updated
 socket.on('avoidDiscrepancy',function(data){
+
     pointer.moveTo(data.x, data.y);
+
 })
 
+//main function for drawing through the mouse
 window.onmousemove=function(event){
+
    x=event.clientX;
+
    y=event.clientY;
 
    if(mouseDown){
+
     if(peer_id!=-1){ 
+
         socket.emit('draw',{x,y});
+
     }
+
        pointer.lineTo(x, y);
+
        pointer.stroke();
-   }
+  }
 }
 
+//receiving senders data of what he/she has written on the canvas
 socket.on('draw',function(data){
+
     if(peer_id!=-1){
-    pointer.lineTo(data.x, data.y);
-    pointer.stroke();
+
+       pointer.lineTo(data.x, data.y);
+
+       pointer.stroke();
+
     }
 })
 
