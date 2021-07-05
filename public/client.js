@@ -231,9 +231,9 @@ audioOnOff.addEventListener('click',function(){
 
 let canvas=document.getElementById('canvas');
 
-canvas.width=1366;
+canvas.width=window.innerWidth;
 
-canvas.height=625;
+canvas.height=window.innerHeight;
 
 console.log(canvas.width+" "+canvas.height);
 
