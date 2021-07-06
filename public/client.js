@@ -310,17 +310,24 @@ socket.on('draw',function(data){
 
     }
 })
+
 let inFullScreen=false;
+
+//DOUBLE CLICKING ON MY VIDEO TOGGLES TO FULL SCREEN AND VICE VERSA
 document.getElementById('myvideo').addEventListener("dblclick",()=>{
 
     toggle(document.getElementById('myvideo'));
 
 });
+
+//DOUBLE CLICKING ON PEER'S VIDEO TOGGLES TO FULL SCREEN AND VICE VERSA
 document.getElementById('hisvideo').addEventListener("dblclick",()=>{
 
     toggle(document.getElementById('hisvideo'));
 
 });
+
+//THE MAIN TOGGLING FUNCTION
 function toggle(elemid){
    
     if(inFullScreen){
