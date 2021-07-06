@@ -16,8 +16,8 @@ var peer = new Peer();//dynamic initialization of peer
 
 //when send button is pressed this below segment of code gets activated and perform sending of message to server side from client side 
 button.addEventListener('click', function(){
-    if(peer_id!=-1&&message.value!="") output.innerHTML += '<p style="color:white"> <strong>' + "You :" +  '</strong>' + message.value + '</p>';
-    
+    if(message.value!="") output.innerHTML += '<p style="color:white"> <strong>' + "You :" +  '</strong>' + message.value + '</p>';
+
     socket.emit('chat', {
 
         message: message.value,
@@ -29,7 +29,7 @@ button.addEventListener('click', function(){
 //when receiving a message from server side ,perform the followong action
 socket.on('chat', function(data){
 
-    if(peer_id!=-1&&data.message!="") {
+    if(data.message!="") {
 
         output.innerHTML += '<p style="color:white"> <strong>' + "Person 2" + ': </strong>' + data.message + '</p>';
     }
@@ -310,4 +310,29 @@ socket.on('draw',function(data){
 
     }
 })
+let inFullScreen=false;
+document.getElementById('myvideo').addEventListener("dblclick",()=>{
 
+    toggle(document.getElementById('myvideo'));
+
+});
+document.getElementById('hisvideo').addEventListener("dblclick",()=>{
+
+    toggle(document.getElementById('hisvideo'));
+
+});
+function toggle(elemid){
+   
+    if(inFullScreen){
+
+        inFullScreen=false;
+
+        elemid.exitFullscreen();
+    }
+    else{
+       
+        inFullScreen=true;
+
+        elemid.requestFullscreen();
+    }
+}
