@@ -138,8 +138,8 @@ function receiveStream(stream,elemid){
 //whenever a client reaches to the application just give him a random id so that he can get connected
 peer.on('open',function(){
 
-    alert("Your id is "+peer.id+" Use it to get connected");
-
+    alert(peer.id);
+    
 })
 
 //once a call is made one can video-chat/screen share/messages etc
