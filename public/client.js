@@ -149,25 +149,25 @@ document.getElementById('call').addEventListener('click',function(){
 
     if(peer_id!=""){
 
-    document.getElementById('leave').disabled=false;
+       document.getElementById('leave').disabled=false;
 
-    conn=peer.connect(peer_id);
+       conn=peer.connect(peer_id);
 
-    var call=peer.call(peer_id,window.localstream);
+       var call=peer.call(peer_id,window.localstream);
 
-    call.on('stream',function(stream){
+       call.on('stream',function(stream){
 
-        window.peer_stream=stream;
+           window.peer_stream=stream;
 
-        receiveStream(stream,'hisvideo');
-    })
+           receiveStream(stream,'hisvideo');
+       })
 
-    call.on('close',function(stream){
+       call.on('close',function(stream){
 
-        window.okToSend=false;
+           window.okToSend=false;
         
-        video.remove();
-    })
+           video.remove();
+       })
     }
 
 })
@@ -204,6 +204,7 @@ peer.on('call',function(call){
 videoOnOff.addEventListener('click',function(){
 
     let videoEnabled = myVideoStream.getVideoTracks()[0].enabled;
+    
     if (videoEnabled) {
        videoOnOff.innerHTML='<img src="vidoff.png" width="35px" height="35px">';
 
