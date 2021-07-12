@@ -8,5 +8,13 @@ Features and technologies used for it:-
 5.)Collaborative whiteboard on which both the participants can write something simultaneously using socket.io.
 6.)Toggling full screen mode of both user and his peer's video by double clicking on it using javaScript APIs.
 
+Methodology used-Agile
+10-17 June -Designing and building the basic video meeting functionality+(review by two persons one having technical background and one having non -technical background).
+18-25 june-Built the collaborative whiteboard  functionality +(review by two persons one having technical background and one having non -technical background).
+25-30 june-Built video on/off,audio on/off,share screen functionality +(review by two persons one having technical background and one having non -technical background).
+1-5 july-Styling part of the website +(review by two persons one having technical background and one having non -technical background).
+5-12 july-chat functionality +(review by two persons one having technical background and one having non -technical background).
+
+
 Thanks,any feedback is welcome.
 
